@@ -25,7 +25,7 @@ CONSTRAINT Typ_Chck CHECK (Typ IN ('Klient','Artysta','Ubezpieczyciel'))
 );
 
 CREATE TABLE Dziela (
-	NrInw INT,
+	NrInw INT auto_increment,
 	Tytul VARCHAR(1000) NOT null,
 	Cena DECIMAL (12,2) NOT null,
 	Rozmiar VARCHAR(100),
@@ -128,5 +128,4 @@ FOREIGN KEY (IdKupujacego) REFERENCES Kontrahenci(Id),
 FOREIGN KEY (IdSprzedawcy) REFERENCES Sprzedawcy(NrPracownika),
 FOREIGN KEY (IdDziela) REFERENCES Dziela(NrInw) 
 );
-
 
