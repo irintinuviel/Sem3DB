@@ -1,4 +1,4 @@
-INSERT INTO kontrahenci (Typ, Imie, Nazwisko, Ulica, NrBudynku, NrLokalu, KodPoczt, Miejscowosc, NrZezwolenia) VALUES
+INSERT INTO kontrahenci (Typ, Imie, Nazwisko, Ulica, NrBudynku, NrLokalu, KodPoczt, Miejscowosc) VALUES
 ('Klient', 'Jan', 'Kowalski', 'Aleja Kwiatowa', '12', NULL, '12-345', 'Warszawa'),
 ('Klient', 'Anna', 'Nowak', 'ul. Słoneczna', '5', '3A', '45-678', 'Kraków'),
 ('Klient', 'Piotr', 'Dąbrowski', 'ul. Leszczynowa', '7', NULL, '90-123', 'Łódź'),
