@@ -1,0 +1,97 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>360</x><y>370</y><w>100</w><h>100</h></coordinates><panel_attributes>Dzieło
+--
+NrInw {PK}
+Tytul
+Cena
+Rozmiar
+Tagi [0..*]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>100</x><y>370</y><w>100</w><h>90</h></coordinates><panel_attributes>Wystawa
+--
+Id {PK}
+Tytul
+DataPocz
+DataKon</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>390</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1..*
+m2=1
+</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>380</y><w>190</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=1..*
+</panel_attributes><additional_attributes>10;20;170;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>430</x><y>590</y><w>100</w><h>100</h></coordinates><panel_attributes>Ubezpieczenie
+--
+NrPolisy {PK}
+DataPocz
+DataKon
+KwotaUbezp
+Koszt</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>400</y><w>100</w><h>50</h></coordinates><panel_attributes>Artysta
+--
+Biografia</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>610</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1..*
+m2=1
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>610</y><w>100</w><h>50</h></coordinates><panel_attributes>Ubezpieczyciel
+--
+NrZezwolenia</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>550</y><w>100</w><h>60</h></coordinates><panel_attributes>Kategoria
+--
+Id {PK}
+Nazwa</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>460</y><w>60</w><h>110</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=1
+</panel_attributes><additional_attributes>30;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>460</y><w>90</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..1
+</panel_attributes><additional_attributes>10;10;60;130</additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>210</y><w>100</w><h>60</h></coordinates><panel_attributes>Certyfikat
+--
+Sygnatura {PK}
+DataWyst</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>260</y><w>60</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*
+</panel_attributes><additional_attributes>40;110;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>80</x><y>200</y><w>100</w><h>90</h></coordinates><panel_attributes>Rzeczoznawca
+--
+Id {PK}
+Imie
+Nazwisko
+NrTel
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>230</y><w>160</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1..*
+</panel_attributes><additional_attributes>10;20;140;20</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>330</y><w>500</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=0..1
+</panel_attributes><additional_attributes>10;20;480;20</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>300</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>220</y><w>100</w><h>90</h></coordinates><panel_attributes>Sprzedaż
+--
+Id {PK}
+DataSp
+Kwota
+Prowizja</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>850</x><y>380</y><w>100</w><h>150</h></coordinates><panel_attributes>Kontrahent
+--
+Id {PK}
+Imie
+Nazwisko
+Ulica
+NrBudynku
+NrLokalu
+KodPoczt
+Miejscowosc
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>700</x><y>410</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;50;10</additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>620</y><w>50</w><h>30</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;30;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>570</x><y>490</y><w>100</w><h>90</h></coordinates><panel_attributes>Nabycie
+--
+Id {PK}
+DataNab
+KwotaZakupu
+ProcentProwizji</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>460</y><w>150</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=1
+</panel_attributes><additional_attributes>10;10;130;50</additional_attributes></element><element><id>Relation</id><coordinates><x>660</x><y>520</y><w>270</w><h>60</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=1
+</panel_attributes><additional_attributes>10;30;240;30;240;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>50</y><w>130</w><h>90</h></coordinates><panel_attributes>Sprzedawca
+--
+NrPracownika {PK}
+Imie
+Nazwisko
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>660</x><y>0</y><w>140</w><h>110</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2= 0..1
+przełożony</panel_attributes><additional_attributes>80;80;120;80;120;20;10;20;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>130</y><w>50</w><h>110</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*
+</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>340</y><w>30</w><h>50</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;30;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>890</x><y>340</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;40;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>740</x><y>410</y><w>30</w><h>240</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;220;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>740</x><y>450</y><w>130</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-
+{Optional, Or}</panel_attributes><additional_attributes>110;20;10;20</additional_attributes></element></diagram>
