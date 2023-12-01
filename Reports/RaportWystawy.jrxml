@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RaportWystawy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="45dec828-92b5-4688-8493-463066e71c22">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapter1"/>
+	<parameter name="ParametrWystawa" class="java.lang.String"/>
+	<parameter name="ParametrKategoria" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT wystawy.Tytul TytulWystawy, 
+DataPocz, DataKon, dziela.Tytul TytulDziela,
+dziela.Cena Cena, dziela.Rozmiar Rozmiar, 
+kategorie.Nazwa Kategoria,
+ CONCAT( kontrahenci.Imie, ' ' , kontrahenci.Nazwisko)  Autor
+FROM wystawy, dziela, dzielo_wystawa, kontrahenci, kategorie
+WHERE dzielo_wystawa.IdWystawy = wystawy.Id 
+AND dzielo_wystawa.IdDziela = dziela.NrInw
+AND dziela.IdAutora = kontrahenci.Id
+AND dziela.IdKategorii = kategorie.Id
+AND wystawy.Tytul =  $P{ParametrWystawa}
+]]>
+	</queryString>
+	<field name="TytulWystawy" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Tytul"/>
+		<property name="com.jaspersoft.studio.field.label" value="TytulWystawy"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="wystawy"/>
+	</field>
+	<field name="DataPocz" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="DataPocz"/>
+		<property name="com.jaspersoft.studio.field.label" value="DataPocz"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="wystawy"/>
+	</field>
+	<field name="DataKon" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="DataKon"/>
+		<property name="com.jaspersoft.studio.field.label" value="DataKon"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="wystawy"/>
+	</field>
+	<field name="TytulDziela" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Tytul"/>
+		<property name="com.jaspersoft.studio.field.label" value="TytulDziela"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dziela"/>
+	</field>
+	<field name="Cena" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Cena"/>
+		<property name="com.jaspersoft.studio.field.label" value="Cena"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dziela"/>
+	</field>
+	<field name="Rozmiar" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Rozmiar"/>
+		<property name="com.jaspersoft.studio.field.label" value="Rozmiar"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dziela"/>
+	</field>
+	<field name="Kategoria" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nazwa"/>
+		<property name="com.jaspersoft.studio.field.label" value="Kategoria"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="kategorie"/>
+	</field>
+	<field name="Autor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Autor"/>
+		<property name="com.jaspersoft.studio.field.label" value="Autor"/>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="93">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="113" backcolor="#6A477A" uuid="ee04337d-1f96-4772-a5e7-65b036ab7e91"/>
+				<textField pattern="yyyy.MM.dd">
+					<reportElement x="350" y="21" width="103" height="50" forecolor="#FFFFFF" uuid="6be4bd06-401b-42ad-b287-5d521cb0fe66"/>
+					<textElement verticalAlignment="Middle">
+						<font size="20" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DataPocz}]]></textFieldExpression>
+				</textField>
+				<textField pattern="yyyy.MM.dd">
+					<reportElement x="470" y="20" width="113" height="50" forecolor="#FFFFFF" uuid="3974eed7-2798-4462-be97-a7a2356cf8ab"/>
+					<textElement verticalAlignment="Middle">
+						<font size="20" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DataKon}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="9" y="20" width="331" height="50" forecolor="#FFFFFF" uuid="38464b19-4241-4cf7-b175-401a4266a9b3"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{ParametrWystawa}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="451" y="21" width="16" height="50" forecolor="#FFFFFF" uuid="8d9a4ebe-616d-41d6-86e8-6da7f0ed80e5"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[-]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="100" y="71" width="483" height="39" forecolor="#FFFFFF" uuid="b1b0f5a1-b8a8-4b63-a30b-656215cb1874"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="18" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{ParametrKategoria}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="70" width="90" height="40" forecolor="#FFFFFF" uuid="e71fe47b-7646-4151-a44b-cad5061ccf20"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="18" isBold="true"/>
+					</textElement>
+					<text><![CDATA[kategoria:]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement mode="Opaque" x="-20" y="20" width="595" height="1" forecolor="#63307A" backcolor="#E6E6E6" uuid="33779e86-6dea-4966-ac84-1527272b8975"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="100" height="21" forecolor="#63307A" backcolor="#E6E6E6" uuid="a8ab18e5-b25a-452b-80b3-fd49c608762a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2cb15d3a-0ded-4ae4-8e0f-9c5ce17adaee"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TytulDziela]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="100" y="0" width="140" height="21" forecolor="#63307A" backcolor="#E6E6E6" uuid="bcfa42ff-c186-4618-b69d-d38b3501ec37">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d5978e2c-2d59-4356-96fc-707bd71f7c0f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kategoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="240" y="0" width="130" height="21" forecolor="#63307A" backcolor="#E6E6E6" uuid="2ea160bc-52df-4f1b-bac2-dc6aee0e1c6b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="049035a4-6def-4e10-88c4-4e924c9623d0"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Autor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="370" y="0" width="90" height="21" forecolor="#63307A" backcolor="#E6E6E6" uuid="a9d5eae4-5187-42b6-99c2-f7827b468e92">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd18d3e8-bdeb-4fe9-bebc-81a623f842c3"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cena]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="460" y="0" width="95" height="21" forecolor="#63307A" backcolor="#E6E6E6" uuid="0a1d78ee-b994-4715-bd11-5e2add4e08d2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="114ef5e9-d00e-4df7-a507-2008cdd436eb"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rozmiar]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="60">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="ed99915e-ff36-4a94-b3e4-a483473d7457"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="16" width="100" height="44" uuid="91b70414-0afa-4753-b8b5-a0125fd0d9bf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2cb15d3a-0ded-4ae4-8e0f-9c5ce17adaee"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TytulDziela}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="16" width="140" height="44" uuid="896e84fc-53ae-472b-bd3a-f3c9de1c1da3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d5978e2c-2d59-4356-96fc-707bd71f7c0f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Kategoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="16" width="130" height="44" uuid="b6fd3e1a-a44c-4abe-b30f-2995b96f27f3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="049035a4-6def-4e10-88c4-4e924c9623d0"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Autor}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="370" y="16" width="90" height="44" uuid="436d0550-ad8e-488d-8d37-9b30329eed7e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd18d3e8-bdeb-4fe9-bebc-81a623f842c3"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cena}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="460" y="16" width="95" height="44" uuid="3519831d-8a9a-4c0a-880e-be0d02ba222b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="114ef5e9-d00e-4df7-a507-2008cdd436eb"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Rozmiar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="60f8f380-5316-4055-a0c4-082407181781"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="2fc45422-f6e2-4c3f-95b8-af80f3184351"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="fe313ae5-f554-4075-87c6-06b07371f3d9"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
