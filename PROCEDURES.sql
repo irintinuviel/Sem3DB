@@ -80,7 +80,41 @@ IdSprzedajacego INT
 DELIMITER ;
 
 
+-- z IF- obniżka ceny o 100 przy zakupie dla klienta który zakupił więcej niż 3 dzieła lub o 50 dla klienta który zakupił więcej niż 2
+DELIMITER //
+	CREATE FUNCTION obnizkaceny(ilesprzedano INT) RETURNS INT
+	BEGIN
+	   DECLARE obnizka INT;
+	    IF ilesprzedano > 3 THEN
+	    	SET obnizka = 100;
+	    ELSEIF ilesprzedano > 2 THEN
+	    	SET obnizka = 50;
+	    END IF;
+	    
+	   RETURN obnizka;
+	END  //
+	
+DELIMITER ;
+
+-- WYZWALACZ Wykorzystujący tą funkcję- przy każdym nowym zakupie:
+DELIMITER //
+ CREATE TRIGGER dodaj_obnizke
+ BEFORE INSERT ON sprzedaz
+ FOR EACH ROW
+ BEGIN
+ 	DECLARE obnizka INT;
+ 	SET obnizka = (SELECT obnizkaceny(COUNT(*)) FROM sprzedaz WHERE IdKupujacego = NEW.IdKupujacego);
+   IF obnizka IS NULL THEN
+      SET obnizka = 0;
+   END IF;
+	SET NEW.Kwota = NEW.Kwota - obnizka;
+ END;
+ //
+DELIMITER ;
+
+
 -- WYZWALACZE
+
 -- sprawdza przed sprzedażą czy dzieło już zostało sprzedane
 DELIMITER // 
 

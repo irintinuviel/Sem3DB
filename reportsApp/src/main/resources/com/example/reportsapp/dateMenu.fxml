@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.reportsapp.DateMenuController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      <Label text="Data początkowa" />
+      <DatePicker fx:id="dateStart" />
+      <Label text="Data końcowa" />
+      <DatePicker fx:id="dateEnd" />
+      <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#getData" text="Zatwierdź" />
+      <Button fx:id="buttonCancel" mnemonicParsing="false" onAction="#showMainMenu" text="Anuluj" />
+   </children>
+</VBox>

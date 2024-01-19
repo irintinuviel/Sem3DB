@@ -1,5 +1,3 @@
--- min =15 zapytań podzapytanie skorelowane i nieskorelowane, klauzule:  ANY, ALL
-
 -- Dzieła z jakich kategorii zostały wystawione więcej niż 10 razy
 SELECT IdKategorii,Nazwa, COUNT(*) Ile FROM kategorie k, dziela d, dzielo_wystawa dw WHERE k.Id=d.IdKategorii AND d.NrInw=dw.IdDziela 
 GROUP BY IdKategorii HAVING COUNT(*)>10 ORDER BY Ile DESC;
@@ -12,7 +10,7 @@ FROM (SELECT * FROM dziela d, nabycie n WHERE d.NrInw = n.IdDziela) ds LEFT JOIN
 SELECT * FROM kontrahenci WHERE Typ = 'Klient' AND Id NOT IN (SELECT IdKupujacego FROM sprzedaz);
 
 -- Ile galeria zakupiła dzieł w 2019?
-SELECT COUNT(*) FROM nabycie n WHERE DataNab LIKE '2019%';
+SELECT COUNT(*) Ile FROM nabycie n WHERE DataNab LIKE '2019%';
 
 -- Najdroższe dzieło
 SELECT NrInw, Tytul, Cena FROM dziela WHERE Cena IN (SELECT MAX(Cena) FROM dziela);
@@ -33,21 +31,21 @@ FROM sprzedawcy,
 (SELECT NrPrzelozonego, COUNT(*) Ile FROM sprzedawcy s, sprzedaz sp WHERE s.NrPracownika = sp.IdSprzedawcy AND s.NrPrzelozonego IS NOT NULL GROUP BY s.NrPrzelozonego) ss
 WHERE NrPracownika = ss.NrPrzelozonego ORDER BY ss.Ile DESC; 
 
--- Najczęściej kupowane pogrupowane wg tagów
-SELECT Wartosc, COUNT(*) Ile FROM tagi t, sprzedaz s WHERE t.NrInw = s.IdDziela GROUP BY Wartosc ORDER BY Ile DESC;
+-- Najpopularniejsze tagi (dzieła kupione 5)
+SELECT Wartosc, COUNT(*) Ile FROM tagi t, sprzedaz s WHERE t.NrInw = s.IdDziela GROUP BY Wartosc HAVING COUNT(*) >=5 ORDER BY Ile DESC;
 
 -- Wykaz łącznych kwot na jakie ubezpieczono dzieła dla każdego ubezpieczyciela
 SELECT Id, Imie, Nazwisko, SUM(KwotaUbezp) Kwota FROM ubezpieczenia u, kontrahenci k WHERE u.IdUbezpieczyciela= k.Id GROUP BY Id;
 
 -- Artyści od których nigdy nie kupowano bezpośrednio dzieł
-SELECT * FROM kontrahenci WHERE Typ= 'Artysta' AND Id NOT IN (SELECT IdSprzedajacego FROM nabycie);
+SELECT Id, Imie, Nazwisko FROM kontrahenci WHERE Typ= 'Artysta' AND Id NOT IN (SELECT IdSprzedajacego FROM nabycie);
 
 -- Wystawy posortowane wg średniej wartości dzieł wystawionych na nich
 SELECT IdWystawy, w.Tytul, ROUND(AVG(Cena),2) SredniaWartosc FROM dzielo_wystawa dw, dziela d, wystawy w 
 WHERE dw.IdDziela = d.NrInw AND dw.IdWystawy = w.Id GROUP BY IdWystawy ORDER BY SredniaWartosc DESC;
 
--- Po ile dzieł z każdej kategorii było w galerii
-SELECT Id, Nazwa,IF(NrInw IS NULL,0,COUNT(*)) Ile FROM kategorie k LEFT JOIN dziela d ON d.IdKategorii = k.Id GROUP BY Id ;
+-- Najpopularniejsze kategorie w galerii (w galerii było 5 lub więcej dzieł z tej kategorii)
+SELECT Id, Nazwa, COUNT(*) Ile FROM kategorie k, dziela d WHERE d.IdKategorii = k.Id GROUP BY Id HAVING Ile >=5;
 
 -- Który klient kupił najwięcej
 SELECT k.Id,k.Imie, k.Nazwisko, COUNT(*) Ile FROM kontrahenci k, sprzedaz s WHERE k.Id = s.IdKupujacego GROUP BY k.Id ORDER BY Ile DESC LIMIT 1;
@@ -60,3 +58,4 @@ SELECT SUBSTRING(DataNab, 1, 4) Rok, SUM(KwotaZakupu) Wydatki FROM nabycie GROUP
 
 -- Artyści którzy tworzyli dzieła w więcej niż 5 kategoriach
 SELECT Id, Imie, Nazwisko FROM kontrahenci k, dziela d WHERE k.Id = d.IdAutora GROUP BY Id HAVING COUNT(DISTINCT IdKategorii) > 5;
+

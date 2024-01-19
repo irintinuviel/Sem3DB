@@ -76,8 +76,6 @@ NrInw INT NOT null,
 FOREIGN KEY (NrInw) REFERENCES Dziela(NrInw) ON DELETE CASCADE
 );
 
-
-
 CREATE TABLE Ubezpieczenia (
 NrPolisy VARCHAR(10), 
 DataPocz date, 
@@ -90,8 +88,6 @@ PRIMARY KEY (NrPolisy),
 FOREIGN KEY (IdUbezpieczyciela) REFERENCES Kontrahenci(Id),
 FOREIGN KEY (IdDziela) REFERENCES Dziela(NrInw) ON DELETE CASCADE
 );
-
-
 
 CREATE TABLE Nabycie (
 Id INT auto_increment,

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" minHeight="350.0" prefHeight="350.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.reportsapp.MenuController">
+  <padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+  </padding>
+   <children>
+      <Label text="Witaj! Jaki raport chcesz wygenerować?">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonSp" mnemonicParsing="false" onAction="#showsYearMenu" text="Sprzedaż w określonych latach" />
+      <Button fx:id="buttonNb" mnemonicParsing="false" onAction="#shownYearMenu" text="Nabycie w określonych latach" />
+      <Button fx:id="buttonSpGr" mnemonicParsing="false" onAction="#showDateMenu" text="Sprzedaż poszczególnych pracowników w zakresie podanych dat" />
+      <Button fx:id="buttonUb" mnemonicParsing="false" onAction="#showuYearMenu" text="Koszt ubezpieczeń w określonych latach" />
+      <Button fx:id="buttonCert" mnemonicParsing="false" onAction="#showIdMenu" text="Informacje o konkretnym dziele" />
+   </children>
+</VBox>
